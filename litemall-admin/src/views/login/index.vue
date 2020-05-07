@@ -35,10 +35,6 @@
         </div>
       </div>
     </el-form>
-
-    <div class="copyright">
-      Copyright © 2020 xxx.com 版权所有 <a href="http://www.example.com/">沪ICP备xxx号</a>
-    </div>
   </div>
 </template>
 
