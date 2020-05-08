@@ -1,0 +1,261 @@
+.content {
+    width: 100%;
+    height: auto;
+    font-size: 0;
+}
+
+.content image {
+    display: inline-block;
+    width: 100%;
+}
+
+.comments {
+    width: 100%;
+    height: auto;
+    padding-left: 30 rpx;
+    background: #fff;
+    margin-top: 20 rpx;
+}
+
+.comments .h {
+    height: 93 rpx;
+    line-height: 93 rpx;
+    width: 720 rpx;
+    padding-right: 30 rpx;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.comments .h .t {
+    display: block;
+    float: left;
+    width: 50%;
+    font-size: 29 rpx;
+    color: #333;
+}
+
+.comments .h .i {
+    display: block;
+    float: right;
+    width: 33 rpx;
+    height: 33 rpx;
+}
+
+.comments .b {
+    height: auto;
+    width: 720 rpx;
+}
+
+.comments .item {
+    height: auto;
+    width: 720 rpx;
+    overflow: hidden;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.comments .info {
+    height: 127 rpx;
+    width: 100%;
+    padding: 33 rpx 0 27 rpx 0;
+}
+
+.comments .user {
+    float: left;
+    width: auto;
+    height: 67 rpx;
+    line-height: 67 rpx;
+    font-size: 0;
+}
+
+.comments .user .avatar {
+    display: block;
+    float: left;
+    width: 67 rpx;
+    height: 67 rpx;
+    margin-right: 17 rpx;
+    border-radius: 50%;
+}
+
+.comments .user .nickname {
+    display: block;
+    width: auto;
+    float: left;
+    height: 66 rpx;
+    overflow: hidden;
+    font-size: 29 rpx;
+    line-height: 66 rpx;
+}
+
+.comments .time {
+    display: block;
+    float: right;
+    width: auto;
+    height: 67 rpx;
+    line-height: 67 rpx;
+    color: #7f7f7f;
+    font-size: 25 rpx;
+    margin-right: 30 rpx;
+}
+
+.comments .comment {
+    width: 720 rpx;
+    padding-right: 30 rpx;
+    line-height: 45.8 rpx;
+    margin-bottom: 30 rpx;
+    font-size: 29 rpx;
+    color: #333;
+}
+
+.comments .load {
+    width: 720 rpx;
+    height: 108 rpx;
+    line-height: 108 rpx;
+    text-align: center;
+    font-size: 38.5 rpx;
+}
+
+.no-comments {
+    height: 297 rpx;
+}
+
+.no-comments .txt {
+    height: 43 rpx;
+    line-height: 43 rpx;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 29 rpx;
+    color: #7f7f7f;
+    padding-top: 150 rpx;
+}
+
+.sv-goods {
+    width: 100%;
+    height: auto;
+    padding-left: 30 rpx;
+    background: #fff;
+    margin-top: 20 rpx;
+}
+
+.topic-goods .h {
+    height: 93 rpx;
+    line-height: 93 rpx;
+    width: 720 rpx;
+    padding-right: 30 rpx;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.topic-goods .h .t {
+    display: block;
+    float: left;
+    width: 50%;
+    font-size: 29 rpx;
+    color: #333;
+}
+
+.topic-goods .b .item {
+    border-top: 1px solid #d9d9d9;
+    margin: 0 20 rpx;
+    height: 244 rpx;
+    width: 710 rpx;
+}
+
+.topic-goods .b .img {
+    margin-top: 12 rpx;
+    margin-right: 12 rpx;
+    float: left;
+    width: 220 rpx;
+    height: 220 rpx;
+}
+
+.topic-goods .b .right {
+    float: left;
+    height: 244 rpx;
+    width: 476 rpx;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.topic-goods .b .text {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    height: 244 rpx;
+    width: 476 rpx;
+}
+
+.topic-goods .b .name {
+    float: left;
+    width: 330 rpx;
+    display: block;
+    color: #333;
+    line-height: 50 rpx;
+    font-size: 30 rpx;
+}
+
+.topic-goods .b .desc {
+    width: 476 rpx;
+    display: block;
+    color: #999;
+    line-height: 50 rpx;
+    font-size: 25 rpx;
+}
+
+.topic-goods .b .price {
+    width: 476 rpx;
+    display: flex;
+    color: #b4282d;
+    line-height: 50 rpx;
+    font-size: 33 rpx;
+}
+
+.rec-box {
+    width: 690 rpx;
+    height: auto;
+    margin: 0 30 rpx;
+}
+
+.rec-box .h {
+    position: relative;
+    width: 690 rpx;
+    height: 96 rpx;
+    /*border-bottom: 1px solid #d0d0d0;*/
+    margin-bottom: 32 rpx;
+}
+
+.rec-box .h .txt {
+    display: inline-block;
+    position: absolute;
+    background: #f4f4f4;
+    top: 59 rpx;
+    left: 200 rpx;
+    width: 290 rpx;
+    height: 45 rpx;
+    line-height: 45 rpx;
+    font-size: 30 rpx;
+    color: #999;
+    text-align: center;
+}
+
+.rec-box .b .item {
+    width: 690 rpx;
+    height: 397 rpx;
+    padding: 24 rpx 24 rpx 30 rpx 24 rpx;
+    background: #fff;
+    margin-bottom: 30 rpx;
+}
+
+.rec-box .b .item .img {
+    height: 278 rpx;
+    width: 642 rpx;
+}
+
+.rec-box .b .item .title {
+    display: block;
+    margin-top: 30 rpx;
+    height: 30 rpx;
+    width: 642 rpx;
+    font-size: 28 rpx;
+}
+

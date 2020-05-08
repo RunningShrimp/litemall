@@ -1,0 +1,103 @@
+page {
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+.order-goods {
+    margin-top: 20 rpx;
+    background: #fff;
+}
+
+.order-goods .h {
+    height: 93.75 rpx;
+    line-height: 93.75 rpx;
+    margin-left: 31.25 rpx;
+    border-bottom: 1px solid #f4f4f4;
+    padding-right: 31.25 rpx;
+}
+
+.order-goods .h .label {
+    float: left;
+    font-size: 30 rpx;
+    color: #333;
+}
+
+.order-goods .h .status {
+    float: right;
+    font-size: 30 rpx;
+    color: #b4282d;
+}
+
+.order-goods .item {
+    display: flex;
+    align-items: center;
+    height: 192 rpx;
+    margin-left: 31.25 rpx;
+    padding-right: 31.25 rpx;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.order-goods .item:last-child {
+    border-bottom: none;
+}
+
+.order-goods .item .img {
+    height: 145.83 rpx;
+    width: 145.83 rpx;
+    background: #f4f4f4;
+}
+
+.order-goods .item .img image {
+    height: 145.83 rpx;
+    width: 145.83 rpx;
+}
+
+.order-goods .item .info {
+    flex: 1;
+    height: 145.83 rpx;
+    margin-left: 20 rpx;
+}
+
+.order-goods .item .t {
+    margin-top: 8 rpx;
+    height: 33 rpx;
+    line-height: 33 rpx;
+    margin-bottom: 10.5 rpx;
+}
+
+.order-goods .item .t .name {
+    display: block;
+    float: left;
+    height: 33 rpx;
+    line-height: 33 rpx;
+    color: #333;
+    font-size: 30 rpx;
+}
+
+.order-goods .item .t .number {
+    display: block;
+    float: right;
+    height: 33 rpx;
+    text-align: right;
+    line-height: 33 rpx;
+    color: #333;
+    font-size: 30 rpx;
+}
+
+.order-goods .item .attr {
+    height: 29 rpx;
+    line-height: 29 rpx;
+    color: #666;
+    margin-bottom: 25 rpx;
+    font-size: 25 rpx;
+}
+
+.order-goods .item .price {
+    display: block;
+    float: left;
+    height: 30 rpx;
+    line-height: 30 rpx;
+    color: #333;
+    font-size: 30 rpx;
+}

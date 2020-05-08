@@ -1,0 +1,132 @@
+page {
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.address-list {
+    padding-left: 31.25 rpx;
+    background: #fff;
+    background-size: auto 10.5 rpx;
+    margin-bottom: 90 rpx;
+}
+
+.address-list .item {
+    height: 156.55 rpx;
+    align-items: center;
+    display: flex;
+    border-bottom: 1 rpx solid #dcd9d9;
+}
+
+.address-list .l {
+    width: 125 rpx;
+    height: 80 rpx;
+    overflow: hidden;
+}
+
+.address-list .name {
+    width: 125 rpx;
+    height: 43 rpx;
+    font-size: 29 rpx;
+    color: #333;
+    margin-bottom: 5.2 rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.address-list .default {
+    width: 62.5 rpx;
+    height: 33 rpx;
+    line-height: 28 rpx;
+    text-align: center;
+    font-size: 20 rpx;
+    color: #b4282d;
+    border: 1 rpx solid #b4282d;
+    visibility: visible;
+}
+
+.address-list .c {
+    flex: 1;
+    height: auto;
+    overflow: hidden;
+}
+
+.address-list .mobile {
+    height: 29 rpx;
+    font-size: 29 rpx;
+    line-height: 29 rpx;
+    overflow: hidden;
+    color: #333;
+    margin-bottom: 6.25 rpx;
+}
+
+.address-list .address {
+    height: 37 rpx;
+    font-size: 25 rpx;
+    line-height: 37 rpx;
+    overflow: hidden;
+    color: #666;
+}
+
+.address-list .r {
+    width: 52 rpx;
+    height: auto;
+    overflow: hidden;
+    margin-right: 16.5 rpx;
+}
+
+.address-list .del {
+    display: block;
+    width: 52 rpx;
+    height: 52 rpx;
+}
+
+.add-address {
+    border: none;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90 rpx;
+    line-height: 98 rpx;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    margin-left: 5%;
+    text-align: center;
+    /* padding-left: -5rpx; */
+    font-size: 25 rpx;
+    color: #f4f4f4;
+    border-top-left-radius: 50 rpx;
+    border-bottom-left-radius: 50 rpx;
+    border-top-right-radius: 50 rpx;
+    border-bottom-right-radius: 50 rpx;
+    letter-spacing: 3 rpx;
+    background-image: linear-gradient(to right, #9a9ba1 0%, #9a9ba1 100%);
+}
+
+.empty-view {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-view .text {
+    width: auto;
+    font-size: 28 rpx;
+    line-height: 35 rpx;
+    color: #999;
+}

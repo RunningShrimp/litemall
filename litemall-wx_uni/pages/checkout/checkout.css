@@ -1,0 +1,310 @@
+page {
+    height: 100%;
+    background: #f4f4f4;
+}
+
+.address-box {
+    width: 100%;
+    height: 166.55 rpx;
+    background-size: 62.5 rpx 10.5 rpx;
+    margin-bottom: 20 rpx;
+    padding-top: 10.5 rpx;
+}
+
+.address-item {
+    display: flex;
+    height: 155.55 rpx;
+    background: #fff;
+    padding: 41.6 rpx 0 41.6 rpx 31.25 rpx;
+}
+
+.address-item.address-empty {
+    line-height: 75 rpx;
+    text-align: center;
+}
+
+.address-box .l {
+    width: 125 rpx;
+    height: 100%;
+}
+
+.address-box .l .name {
+    margin-left: 6.25 rpx;
+    margin-top: -7.25 rpx;
+    display: block;
+    width: 125 rpx;
+    height: 43 rpx;
+    line-height: 43 rpx;
+    font-size: 30 rpx;
+    color: #333;
+    margin-bottom: 5 rpx;
+}
+
+.address-box .l .default {
+    margin-left: 6.25 rpx;
+    display: block;
+    width: 62 rpx;
+    height: 33 rpx;
+    border-radius: 5 rpx;
+    border: 1px solid #b4282d;
+    font-size: 20.5 rpx;
+    text-align: center;
+    line-height: 29 rpx;
+    color: #b4282d;
+}
+
+.address-box .m {
+    flex: 1;
+    height: 72.25 rpx;
+    color: #999;
+}
+
+.address-box .mobile {
+    display: block;
+    height: 29 rpx;
+    line-height: 29 rpx;
+    margin-bottom: 6.25 rpx;
+    font-size: 30 rpx;
+    color: #333;
+}
+
+.address-box .address {
+    display: block;
+    height: 37.5 rpx;
+    line-height: 37.5 rpx;
+    font-size: 25 rpx;
+    color: #666;
+}
+
+.address-box .r {
+    width: 77 rpx;
+    height: 77 rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.address-box .r image {
+    width: 52.078 rpx;
+    height: 52.078 rpx;
+}
+
+.coupon-box {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+
+.coupon-box .coupon-item {
+    width: 100%;
+    height: 108.3 rpx;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    padding-left: 31.25 rpx;
+}
+
+.coupon-box .l {
+    flex: 1;
+    height: 43 rpx;
+    line-height: 43 rpx;
+    padding-top: 35 rpx;
+}
+
+.coupon-box .l .name {
+    float: left;
+    font-size: 30 rpx;
+    color: #666;
+}
+
+.coupon-box .l .txt {
+    float: right;
+    font-size: 30 rpx;
+    color: #666;
+}
+
+.coupon-box .r {
+    margin-top: 15.5 rpx;
+    width: 77 rpx;
+    height: 77 rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coupon-box .r image {
+    width: 52.078 rpx;
+    height: 52.078 rpx;
+}
+
+.message-box {
+    margin-top: 20 rpx;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+
+.message-box .message-item {
+    height: 52.078 rpx;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    margin-left: 31.25 rpx;
+    padding-right: 31.25 rpx;
+    padding-top: 26 rpx;
+}
+
+.order-box {
+    margin-top: 20 rpx;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+
+.order-box .order-item {
+    height: 104.3 rpx;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    margin-left: 31.25 rpx;
+    padding-right: 31.25 rpx;
+    padding-top: 26 rpx;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.order-box .order-item .l {
+    float: left;
+    height: 52 rpx;
+    width: 50%;
+    line-height: 52 rpx;
+    overflow: hidden;
+}
+
+.order-box .order-item .r {
+    float: right;
+    text-align: right;
+    width: 50%;
+    height: 52 rpx;
+    line-height: 52 rpx;
+    overflow: hidden;
+}
+
+.order-box .order-item.no-border {
+    border-bottom: none;
+}
+
+.goods-items {
+    margin-top: 20 rpx;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+    padding-left: 31.25 rpx;
+    margin-bottom: 120 rpx;
+}
+
+.goods-items .item {
+    height: 192 rpx;
+    padding-right: 31.25 rpx;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.goods-items .item.no-border {
+    border-bottom: none;
+}
+
+.goods-items .item:last-child {
+    border-bottom: none;
+}
+
+.goods-items .img {
+    height: 145.83 rpx;
+    width: 145.83 rpx;
+    background-color: #f4f4f4;
+    margin-right: 20 rpx;
+}
+
+.goods-items .img image {
+    height: 145.83 rpx;
+    width: 145.83 rpx;
+}
+
+.goods-items .info {
+    flex: 1;
+    height: 145.83 rpx;
+    padding-top: 5 rpx;
+}
+
+.goods-items .t {
+    height: 33 rpx;
+    line-height: 33 rpx;
+    margin-bottom: 10 rpx;
+    overflow: hidden;
+    font-size: 30 rpx;
+    color: #333;
+}
+
+.goods-items .t .name {
+    display: block;
+    float: left;
+}
+
+.goods-items .t .number {
+    display: block;
+    float: right;
+    text-align: right;
+}
+
+.goods-items .m {
+    height: 29 rpx;
+    overflow: hidden;
+    line-height: 29 rpx;
+    margin-bottom: 25 rpx;
+    font-size: 25 rpx;
+    color: #666;
+}
+
+.goods-items .b {
+    height: 41 rpx;
+    overflow: hidden;
+    line-height: 41 rpx;
+    font-size: 30 rpx;
+    color: #333;
+}
+
+.order-total {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 100 rpx;
+    width: 100%;
+    display: flex;
+}
+
+.order-total .l {
+    flex: 1;
+    height: 100 rpx;
+    line-height: 100 rpx;
+    color: #b4282d;
+    background: #fff;
+    font-size: 33 rpx;
+    padding-left: 31.25 rpx;
+    border-top: 1 rpx solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1 rpx solid rgba(0, 0, 0, 0.2);
+}
+
+.order-total .r {
+    width: 233 rpx;
+    height: 100 rpx;
+    background: #b4282d;
+    border: 1px solid #b4282d;
+    line-height: 100 rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 30 rpx;
+}
