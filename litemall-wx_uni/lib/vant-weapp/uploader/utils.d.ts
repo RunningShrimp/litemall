@@ -7,9 +7,6 @@ interface File {
     time: number;
     image: boolean;
 }
-
 export declare function isImageUrl(url: string): boolean;
-
 export declare function isImageFile(item: File): boolean;
-
 export {};

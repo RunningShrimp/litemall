@@ -76,25 +76,25 @@ VantComponent({
     },
     methods: {
         onInput(event) {
-            const {value = ''} = event.detail || {};
-            this.setData({value});
+            const { value = '' } = event.detail || {};
+            this.setData({ value });
             wx.nextTick(() => {
                 this.emitChange(value);
             });
         },
         onFocus(event) {
-            this.setData({focused: true});
+            this.setData({ focused: true });
             this.$emit('focus', event.detail);
         },
         onBlur(event) {
-            this.setData({focused: false});
+            this.setData({ focused: false });
             this.$emit('blur', event.detail);
         },
         onClickIcon() {
             this.$emit('click-icon');
         },
         onClear() {
-            this.setData({value: ''});
+            this.setData({ value: '' });
             wx.nextTick(() => {
                 this.emitChange('');
                 this.$emit('clear', '');
@@ -107,7 +107,6 @@ VantComponent({
             this.$emit('input', value);
             this.$emit('change', value);
         },
-        noop() {
-        }
+        noop() { }
     }
 });

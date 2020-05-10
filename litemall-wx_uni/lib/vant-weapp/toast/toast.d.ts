@@ -1,6 +1,5 @@
 /// <reference types="miniprogram-api-typings" />
 declare type ToastMessage = string | number;
-
 interface ToastOptions {
     show?: boolean;
     type?: string;
@@ -15,9 +14,7 @@ interface ToastOptions {
     message?: ToastMessage;
     onClose?: () => void;
 }
-
 declare function Toast(toastOptions: ToastOptions | ToastMessage): WechatMiniprogram.Component.TrivialInstance;
-
 declare namespace Toast {
     var loading: (options: string | number | ToastOptions) => WechatMiniprogram.Component.Instance<Record<string, any>, Record<string, any>, Record<string, any>>;
     var success: (options: string | number | ToastOptions) => WechatMiniprogram.Component.Instance<Record<string, any>, Record<string, any>, Record<string, any>>;

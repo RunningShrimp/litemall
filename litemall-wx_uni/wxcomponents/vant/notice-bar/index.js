@@ -81,7 +81,7 @@ VantComponent({
                     !wrapRect.width) {
                     return;
                 }
-                const {speed, scrollable, delay} = this.data;
+                const { speed, scrollable, delay } = this.data;
                 if (scrollable && wrapRect.width < contentRect.width) {
                     const duration = (contentRect.width / speed) * 1000;
                     this.wrapWidth = wrapRect.width;
@@ -120,7 +120,7 @@ VantComponent({
         onClickIcon() {
             this.timer && clearTimeout(this.timer);
             this.timer = null;
-            this.setData({show: false});
+            this.setData({ show: false });
         },
         onClick(event) {
             this.$emit('click', event);

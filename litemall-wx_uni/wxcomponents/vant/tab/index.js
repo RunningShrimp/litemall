@@ -48,7 +48,7 @@ VantComponent({
             return this.index;
         },
         updateRender(active, parent) {
-            const {data: parentData} = parent;
+            const { data: parentData } = parent;
             this.inited = this.inited || active;
             this.setData({
                 active,

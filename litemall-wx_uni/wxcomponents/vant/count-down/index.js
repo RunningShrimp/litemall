@@ -4,7 +4,6 @@ import {isSameSecond, parseFormat, parseTimeData} from './utils';
 function simpleTick(fn) {
     return setTimeout(fn, 30);
 }
-
 VantComponent({
     props: {
         useSlot: Boolean,
@@ -57,7 +56,8 @@ VantComponent({
         tick() {
             if (this.data.millisecond) {
                 this.microTick();
-            } else {
+            }
+            else {
                 this.macroTick();
             }
         },

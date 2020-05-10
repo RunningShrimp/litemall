@@ -1,8 +1,7 @@
 <template>
-    <view :class="'custom-class ' + ( border ? 'van-hairline--top-bottom' : '' ) + ' ' + utils.bem('tabbar', { fixed, safe: safeAreaInsetBottom })"
-          :style="zIndex ? 'z-index: ' + zIndex : ''">
-        <slot></slot>
-    </view>
+<view :class="'custom-class ' + ( border ? 'van-hairline--top-bottom' : '' ) + ' ' + utils.bem('tabbar', { fixed, safe: safeAreaInsetBottom })" :style="zIndex ? 'z-index: ' + zIndex : ''">
+  <slot></slot>
+</view>
 </template>
 
 <script lang="wxs" module="utils" src="../wxs/utils.wxs"></script>
@@ -10,76 +9,76 @@
 
 <script>
 
-    global['__wxRoute'] = 'lib/vant-weapp/tabbar/index';
-    import {VantComponent} from '../common/component';
+global['__wxRoute'] = 'lib/vant-weapp/tabbar/index';
+import {VantComponent} from '../common/component';
 
-    VantComponent({
-        relation: {
-            name: 'tabbar-item',
-            type: 'descendant',
-            linked(target) {
-                this.children.push(target);
-                target.parent = this;
-                target.updateFromParent();
-            },
-            unlinked(target) {
-                this.children = this.children.filter((item) => item !== target);
-                this.updateChildren();
+VantComponent({
+    relation: {
+        name: 'tabbar-item',
+        type: 'descendant',
+        linked(target) {
+            this.children.push(target);
+            target.parent = this;
+            target.updateFromParent();
+        },
+        unlinked(target) {
+            this.children = this.children.filter((item) => item !== target);
+            this.updateChildren();
+        }
+    },
+    props: {
+        active: {
+            type: null,
+            observer: 'updateChildren'
+        },
+        activeColor: {
+            type: String,
+            observer: 'updateChildren'
+        },
+        inactiveColor: {
+            type: String,
+            observer: 'updateChildren'
+        },
+        fixed: {
+            type: Boolean,
+            value: true
+        },
+        border: {
+            type: Boolean,
+            value: true
+        },
+        zIndex: {
+            type: Number,
+            value: 1
+        },
+        safeAreaInsetBottom: {
+            type: Boolean,
+            value: true
+        }
+    },
+    beforeCreate() {
+        this.children = [];
+    },
+    methods: {
+        updateChildren() {
+            const { children } = this;
+            if (!Array.isArray(children) || !children.length) {
+                return Promise.resolve();
             }
+            return Promise.all(children.map((child) => child.updateFromParent()));
         },
-        props: {
-            active: {
-                type: null,
-                observer: 'updateChildren'
-            },
-            activeColor: {
-                type: String,
-                observer: 'updateChildren'
-            },
-            inactiveColor: {
-                type: String,
-                observer: 'updateChildren'
-            },
-            fixed: {
-                type: Boolean,
-                value: true
-            },
-            border: {
-                type: Boolean,
-                value: true
-            },
-            zIndex: {
-                type: Number,
-                value: 1
-            },
-            safeAreaInsetBottom: {
-                type: Boolean,
-                value: true
-            }
-        },
-        beforeCreate() {
-            this.children = [];
-        },
-        methods: {
-            updateChildren() {
-                const {children} = this;
-                if (!Array.isArray(children) || !children.length) {
-                    return Promise.resolve();
-                }
-                return Promise.all(children.map((child) => child.updateFromParent()));
-            },
-            onChange(child) {
-                const index = this.children.indexOf(child);
-                const active = child.data.name || index;
-                if (active !== this.data.active) {
-                    this.$emit('change', active);
-                }
+        onChange(child) {
+            const index = this.children.indexOf(child);
+            const active = child.data.name || index;
+            if (active !== this.data.active) {
+                this.$emit('change', active);
             }
         }
-    });
+    }
+});
 
-    export default global['__wxComponents']['lib/vant-weapp/tabbar/index'];
+export default global['__wxComponents']['lib/vant-weapp/tabbar/index'];
 </script>
 <style>
-    @import "./index.css";
+@import "./index.css";
 </style>

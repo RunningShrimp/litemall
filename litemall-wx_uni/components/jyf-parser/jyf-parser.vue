@@ -9,30 +9,29 @@
 <template>
 	<view style="display:inherit;">
 		<slot v-if="!nodes.length"></slot>
-		<view :animation="scaleAm" :style="showAm+(selectable?';user-select:text;-webkit-user-select:text':'')"
-			  @tap="_tap"
-			  @touchmove="_touchmove" @touchstart="_touchstart" class="top">
+		<view :animation="scaleAm" :style="showAm+(selectable?';user-select:text;-webkit-user-select:text':'')" @tap="_tap"
+		 @touchmove="_touchmove" @touchstart="_touchstart" class="top">
 			<!--#ifdef H5-->
 			<div :id="'rtf'+uid"></div>
 			<!--#endif-->
 			<!--#ifndef H5-->
-			<trees :lazy-load="lazyLoad" :loadVideo="loadVideo" :nodes="nodes"/>
+			<trees :lazy-load="lazyLoad" :loadVideo="loadVideo" :nodes="nodes" />
 			<!--#endif-->
 		</view>
-		<image :id="index" :src="item" @load="_load" hidden v-bind:key="index" v-for="(item, index) in imgs"/>
+		<image :id="index" :src="item" @load="_load" hidden v-bind:key="index" v-for="(item, index) in imgs" />
 	</view>
 </template>
 
 <script>
-	// #ifndef H5
-	import trees from './libs/trees';
+    // #ifndef H5
+    import trees from './libs/trees';
 
-	var cache = {},
-			CssHandler = require('./libs/CssHandler.js'),
-			// #ifdef MP-WEIXIN || MP-TOUTIAO
-			fs = uni.getFileSystemManager ? uni.getFileSystemManager() : null,
-			// #endif
-			Parser = require('./libs/MpHtmlParser.js');
+    var cache = {},
+		CssHandler = require('./libs/CssHandler.js'),
+		// #ifdef MP-WEIXIN || MP-TOUTIAO
+		fs = uni.getFileSystemManager ? uni.getFileSystemManager() : null,
+		// #endif
+		Parser = require('./libs/MpHtmlParser.js');
 	var document; // document 补丁包 https://jin-yufeng.github.io/Parser/#/instructions?id=document
 	// 计算 cache 的 key
 	function hash(str) {
@@ -40,7 +39,6 @@
 			val += (val << 5) + str.charCodeAt(i);
 		return val;
 	}
-
 	// #endif
 	const cfg = require('./libs/config.js');
 	export default {
@@ -101,11 +99,11 @@
 			// #endif
 			// 图片数组
 			this.imgList = [];
-			this.imgList.each = function (f) {
+			this.imgList.each = function(f) {
 				for (var i = 0, len = this.length; i < len; i++)
 					this.setItem(i, f(this[i], i, this));
 			}
-			this.imgList.setItem = function (i, src) {
+			this.imgList.setItem = function(i, src) {
 				if (!i || !src) return;
 				// #ifndef MP-ALIPAY || APP-PLUS
 				// 去重
@@ -252,7 +250,7 @@
 					if (!img.hasAttribute('ignore') && img.parentElement.nodeName != 'A') {
 						img.i = j++;
 						_ts.imgList.push(img.src || img.getAttribute('data-src'));
-						img.onclick = function () {
+						img.onclick = function() {
 							var preview = true;
 							this.ignore = () => preview = false;
 							_ts.$emit('imgtap', this);
@@ -264,7 +262,7 @@
 							}
 						}
 					}
-					img.onerror = function () {
+					img.onerror = function() {
 						_ts.$emit('error', {
 							source: 'img',
 							target: this
@@ -279,9 +277,9 @@
 				// 链接处理
 				var links = this.rtf.getElementsByTagName('a');
 				for (var link of links) {
-					link.onclick = function (e) {
+					link.onclick = function(e) {
 						var jump = true,
-								href = this.getAttribute('href');
+							href = this.getAttribute('href');
 						_ts.$emit('linkpress', {
 							href,
 							ignore: () => jump = false
@@ -309,13 +307,13 @@
 				_ts.videoContexts = videos;
 				for (var video, i = 0; video = videos[i++];) {
 					video.style.maxWidth = '100%';
-					video.onerror = function () {
+					video.onerror = function() {
 						_ts.$emit('error', {
 							source: 'video',
 							target: this
 						});
 					}
-					video.onplay = function () {
+					video.onplay = function() {
 						if (_ts.autopause)
 							for (var item, i = 0; item = ts.videoContexts[i++];)
 								if (item != this) item.pause();
@@ -324,7 +322,7 @@
 				// 音频处理
 				var audios = this.rtf.getElementsByTagName('audios');
 				for (var audio of audios)
-					audio.onerror = function (e) {
+					audio.onerror = function(e) {
 						_ts.$emit('error', {
 							source: 'audio',
 							target: this
@@ -426,7 +424,7 @@
 											ctx.id = item.attrs.id;
 											this.videoContexts.push(ctx);
 										}
-												// #endif
+										// #endif
 										// #ifdef MP-WEIXIN
 										else if (item.name == 'audio' && item.attrs.autoplay)
 											wx.createAudioContext(item.attrs.id, c).play();
@@ -469,18 +467,18 @@
 					// #endif
 					// #ifdef APP-PLUS
 					uni.createSelectorQuery().in(this)
-							// #endif
-							// #ifndef H5
-							.select('.top').boundingClientRect().exec(res => {
 						// #endif
-						this.width = res[0].width;
-						if (res[0].height == height) {
-							this.$emit('ready', res[0])
-							clearInterval(this._timer);
-						}
-						height = res[0].height;
 						// #ifndef H5
-					});
+						.select('.top').boundingClientRect().exec(res => {
+							// #endif
+							this.width = res[0].width;
+							if (res[0].height == height) {
+								this.$emit('ready', res[0])
+								clearInterval(this._timer);
+							}
+							height = res[0].height;
+							// #ifndef H5
+						});
 					// #endif
 				}, 350)
 				if (this.showWithAnimation && !append) this.showAm = 'animation:show .5s';
@@ -493,12 +491,12 @@
 				var txt = '';
 				for (var i = 0, n; n = ns[i++];) {
 					if (n.type == 'text') txt += n.txt.replace(/&nbsp;/g, '\u00A0').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-							.replace(/&amp;/g, '&');
+						.replace(/&amp;/g, '&');
 					else if (n.type == 'br') txt += '\n';
 					else {
 						// 块级标签前后加换行
 						var block = n.name == 'p' || n.name == 'div' || n.name == 'tr' || n.name == 'li' || (n.name[0] == 'h' && n.name[1] >
-								'0' && n.name[1] < '7');
+							'0' && n.name[1] < '7');
 						if (block && txt && txt[txt.length - 1] != '\n') txt += '\n';
 						if (n.children) txt += this.getText(n.children);
 						if (block && txt[txt.length - 1] != '\n') txt += '\n';
@@ -530,15 +528,15 @@
 				// #ifndef H5
 				var Scroll = (selector, component) => {
 					uni.createSelectorQuery().in(component ? component : this).select(selector).boundingClientRect().selectViewport()
-							.scrollOffset()
-							.exec(res => {
-								if (!res || !res[0])
-									return obj.fail && obj.fail({
-										errMsg: 'Label not found'
-									});
-								obj.scrollTop = res[1].scrollTop + res[0].top;
-								uni.pageScrollTo(obj);
-							})
+						.scrollOffset()
+						.exec(res => {
+							if (!res || !res[0])
+								return obj.fail && obj.fail({
+									errMsg: 'Label not found'
+								});
+							obj.scrollTop = res[1].scrollTop + res[0].top;
+							uni.pageScrollTo(obj);
+						})
 				}
 				if (!obj.id) Scroll('.top');
 				else {

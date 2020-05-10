@@ -1,17 +1,16 @@
 <template>
-    <view :class="'custom-class ' + utils.bem('image', { round })" :style="style" @tap="onClick">
-        <image :lazy-load="lazyLoad" :mode="mode" :show-menu-by-longpress="showMenuByLongpress" :src="src"
-               @error="onError" @load="onLoad" class="image-class van-image__img" v-if="!error"></image>
+<view :class="'custom-class ' + utils.bem('image', { round })" :style="style" @tap="onClick">
+  <image :lazy-load="lazyLoad" :mode="mode" :show-menu-by-longpress="showMenuByLongpress" :src="src" @error="onError" @load="onLoad" class="image-class van-image__img" v-if="!error"></image>
 
-        <view class="loading-class van-image__loading" v-if="loading && showLoading">
-            <slot name="loading" v-if="useLoadingSlot"></slot>
-            <van-icon name="photo-o" size="22" v-else></van-icon>
-        </view>
-        <view class="error-class van-image__error" v-if="error && showError">
-            <slot name="error" v-if="useErrorSlot"></slot>
-            <van-icon name="warning-o" size="22" v-else></van-icon>
-        </view>
-    </view>
+  <view class="loading-class van-image__loading" v-if="loading && showLoading">
+    <slot name="loading" v-if="useLoadingSlot"></slot>
+    <van-icon name="photo-o" size="22" v-else></van-icon>
+  </view>
+  <view class="error-class van-image__error" v-if="error && showError">
+    <slot name="error" v-if="useErrorSlot"></slot>
+    <van-icon name="warning-o" size="22" v-else></van-icon>
+  </view>
+</view>
 </template>
 
 <script lang="wxs" module="utils" src="../wxs/utils.wxs"></script>
@@ -19,109 +18,109 @@
 
 <script>
 
-    global['__wxRoute'] = 'lib/vant-weapp/image/index';
-    import {addUnit, isDef} from '../common/utils';
-    import {VantComponent} from '../common/component';
-    import {button} from '../mixins/button';
-    import {openType} from '../mixins/open-type';
+global['__wxRoute'] = 'lib/vant-weapp/image/index';
+import {addUnit, isDef} from '../common/utils';
+import {VantComponent} from '../common/component';
+import {button} from '../mixins/button';
+import {openType} from '../mixins/open-type';
 
-    const FIT_MODE_MAP = {
-        none: 'center',
-        fill: 'scaleToFill',
-        cover: 'aspectFill',
-        contain: 'aspectFit'
-    };
-    VantComponent({
-        mixins: [button, openType],
-        classes: ['custom-class', 'loading-class', 'error-class', 'image-class'],
-        props: {
-            src: String,
-            round: Boolean,
-            width: {
-                type: null,
-                observer: 'setStyle'
-            },
-            height: {
-                type: null,
-                observer: 'setStyle'
-            },
-            radius: null,
-            lazyLoad: Boolean,
-            useErrorSlot: Boolean,
-            useLoadingSlot: Boolean,
-            showMenuByLongpress: Boolean,
-            fit: {
-                type: String,
-                value: 'fill',
-                observer: 'setMode'
-            },
-            showError: {
-                type: Boolean,
-                value: true
-            },
-            showLoading: {
-                type: Boolean,
-                value: true
-            }
+const FIT_MODE_MAP = {
+    none: 'center',
+    fill: 'scaleToFill',
+    cover: 'aspectFill',
+    contain: 'aspectFit'
+};
+VantComponent({
+    mixins: [button, openType],
+    classes: ['custom-class', 'loading-class', 'error-class', 'image-class'],
+    props: {
+        src: String,
+        round: Boolean,
+        width: {
+            type: null,
+            observer: 'setStyle'
         },
-        data: {
-            error: false,
-            loading: true
+        height: {
+            type: null,
+            observer: 'setStyle'
         },
-        watch: {
-            src() {
-                this.setData({
-                    error: false,
-                    loading: true
-                });
-            }
+        radius: null,
+        lazyLoad: Boolean,
+        useErrorSlot: Boolean,
+        useLoadingSlot: Boolean,
+        showMenuByLongpress: Boolean,
+        fit: {
+            type: String,
+            value: 'fill',
+            observer: 'setMode'
         },
-        mounted() {
-            this.setMode();
-            this.setStyle();
+        showError: {
+            type: Boolean,
+            value: true
         },
-        methods: {
-            setMode() {
-                this.setData({
-                    mode: FIT_MODE_MAP[this.data.fit],
-                });
-            },
-            setStyle() {
-                const {width, height, radius} = this.data;
-                let style = '';
-                if (isDef(width)) {
-                    style += `width: ${addUnit(width)};`;
-                }
-                if (isDef(height)) {
-                    style += `height: ${addUnit(height)};`;
-                }
-                if (isDef(radius)) {
-                    style += 'overflow: hidden;';
-                    style += `border-radius: ${addUnit(radius)};`;
-                }
-                this.setData({style});
-            },
-            onLoad(event) {
-                this.setData({
-                    loading: false
-                });
-                this.$emit('load', event.detail);
-            },
-            onError(event) {
-                this.setData({
-                    loading: false,
-                    error: true
-                });
-                this.$emit('error', event.detail);
-            },
-            onClick(event) {
-                this.$emit('click', event.detail);
-            }
+        showLoading: {
+            type: Boolean,
+            value: true
         }
-    });
+    },
+    data: {
+        error: false,
+        loading: true
+    },
+    watch: {
+        src() {
+            this.setData({
+                error: false,
+                loading: true
+            });
+        }
+    },
+    mounted() {
+        this.setMode();
+        this.setStyle();
+    },
+    methods: {
+        setMode() {
+            this.setData({
+                mode: FIT_MODE_MAP[this.data.fit],
+            });
+        },
+        setStyle() {
+            const { width, height, radius } = this.data;
+            let style = '';
+            if (isDef(width)) {
+                style += `width: ${addUnit(width)};`;
+            }
+            if (isDef(height)) {
+                style += `height: ${addUnit(height)};`;
+            }
+            if (isDef(radius)) {
+                style += 'overflow: hidden;';
+                style += `border-radius: ${addUnit(radius)};`;
+            }
+            this.setData({ style });
+        },
+        onLoad(event) {
+            this.setData({
+                loading: false
+            });
+            this.$emit('load', event.detail);
+        },
+        onError(event) {
+            this.setData({
+                loading: false,
+                error: true
+            });
+            this.$emit('error', event.detail);
+        },
+        onClick(event) {
+            this.$emit('click', event.detail);
+        }
+    }
+});
 
-    export default global['__wxComponents']['lib/vant-weapp/image/index'];
+export default global['__wxComponents']['lib/vant-weapp/image/index'];
 </script>
 <style>
-    @import "./index.css";
+@import "./index.css";
 </style>

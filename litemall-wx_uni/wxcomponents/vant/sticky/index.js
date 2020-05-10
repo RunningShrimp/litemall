@@ -43,7 +43,7 @@ VantComponent({
         initObserver() {
             this.disconnectObserver();
             this.getRect(ROOT_ELEMENT).then((rect) => {
-                this.setData({height: rect.height});
+                this.setData({ height: rect.height });
                 wx.nextTick(() => {
                     this.observeContent();
                     this.observeContainer();
@@ -54,18 +54,19 @@ VantComponent({
             if (observerName) {
                 const observer = this[observerName];
                 observer && observer.disconnect();
-            } else {
+            }
+            else {
                 this.contentObserver && this.contentObserver.disconnect();
                 this.containerObserver && this.containerObserver.disconnect();
             }
         },
         observeContent() {
-            const {offsetTop} = this.data;
+            const { offsetTop } = this.data;
             this.disconnectObserver('contentObserver');
             const contentObserver = this.createIntersectionObserver({
                 thresholds: [0.9, 1]
             });
-            contentObserver.relativeToViewport({top: -offsetTop});
+            contentObserver.relativeToViewport({ top: -offsetTop });
             contentObserver.observe(ROOT_ELEMENT, res => {
                 if (this.data.disabled) {
                     return;
@@ -78,7 +79,7 @@ VantComponent({
             if (typeof this.data.container !== 'function') {
                 return;
             }
-            const {height} = this.data;
+            const { height } = this.data;
             this.getContainerRect().then((rect) => {
                 this.containerHeight = rect.height;
                 this.disconnectObserver('containerObserver');
@@ -98,8 +99,8 @@ VantComponent({
             });
         },
         setFixed(top) {
-            const {offsetTop, height} = this.data;
-            const {containerHeight} = this;
+            const { offsetTop, height } = this.data;
+            const { containerHeight } = this;
             const fixed = containerHeight && height
                 ? top >= height - containerHeight && top < offsetTop
                 : top < offsetTop;
@@ -107,7 +108,7 @@ VantComponent({
                 scrollTop: top,
                 isFixed: fixed
             });
-            this.setData({fixed});
+            this.setData({ fixed });
         }
     },
     mounted() {

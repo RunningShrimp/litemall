@@ -1,95 +1,94 @@
-page, .container {
-    width: 750 rpx;
+page ,.container{
+   width: 750rpx;
+    height: 100%;
+    overflow: hidden;
+    background: #f4f4f4;
+}
+.topic-list{
+    width: 750rpx;
     height: 100%;
     overflow: hidden;
     background: #f4f4f4;
 }
 
-.topic-list {
-    width: 750 rpx;
-    height: 100%;
-    overflow: hidden;
-    background: #f4f4f4;
-}
-
-.topic-list .item {
+.topic-list .item{
     width: 100%;
-    height: 625 rpx;
+    height: 625rpx;
     overflow: hidden;
     background: #fff;
-    margin-bottom: 20 rpx;
+    margin-bottom: 20rpx;
 }
 
-.topic-list .img {
+.topic-list .img{
     width: 100%;
-    height: 415 rpx;
+    height: 415rpx;
 }
 
-.topic-list .info {
+.topic-list .info{
     width: 100%;
-    height: 210 rpx;
+    height: 210rpx;
     overflow: hidden;
 }
 
-.topic-list .title {
+.topic-list .title{
     display: block;
     text-align: center;
     width: 100%;
-    height: 33 rpx;
-    line-height: 35 rpx;
+    height: 33rpx;
+    line-height: 35rpx;
     color: #333;
     overflow: hidden;
-    font-size: 35 rpx;
-    margin-top: 30 rpx;
+    font-size: 35rpx;
+    margin-top: 30rpx;
 }
 
-.topic-list .desc {
+.topic-list .desc{
     display: block;
     text-align: center;
     position: relative;
     width: auto;
-    height: 24 rpx;
-    line-height: 24 rpx;
+    height: 24rpx;
+    line-height: 24rpx;
     overflow: hidden;
     color: #999;
-    font-size: 24 rpx;
-    margin-top: 16 rpx;
-    margin-bottom: 30 rpx;
+    font-size: 24rpx;
+    margin-top: 16rpx;
+    margin-bottom: 30rpx;
 }
 
-.topic-list .price {
+.topic-list .price{
     display: block;
     text-align: center;
     width: 100%;
-    height: 27 rpx;
-    line-height: 27 rpx;
+    height: 27rpx;
+    line-height: 27rpx;
     overflow: hidden;
     color: #b4282d;
-    font-size: 27 rpx;
+    font-size: 27rpx;
 }
 
 
-.page {
-    width: 750 rpx;
-    height: 108 rpx;
+.page{
+    width: 750rpx;
+    height: 108rpx;
     background: #fff;
-    margin-bottom: 20 rpx;
+    margin-bottom: 20rpx;
 }
 
-.page view {
-    height: 108 rpx;
+.page view{
+    height: 108rpx;
     width: 50%;
     float: left;
-    font-size: 29 rpx;
+    font-size: 29rpx;
     color: #333;
     text-align: center;
-    line-height: 108 rpx;
+    line-height: 108rpx;
 }
 
-.page .prev {
+.page .prev{
     border-right: 1px solid #D9D9D9;
 }
 
-.page .disabled {
+.page .disabled{
     color: #ccc;
 }

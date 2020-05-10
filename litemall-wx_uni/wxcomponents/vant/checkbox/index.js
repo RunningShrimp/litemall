@@ -4,7 +4,6 @@ function emit(target, value) {
     target.$emit('input', value);
     target.$emit('change', value);
 }
-
 VantComponent({
     field: true,
     relation: {
@@ -38,26 +37,27 @@ VantComponent({
         emitChange(value) {
             if (this.parent) {
                 this.setParentValue(this.parent, value);
-            } else {
+            }
+            else {
                 emit(this, value);
             }
         },
         toggle() {
-            const {disabled, value} = this.data;
+            const { disabled, value } = this.data;
             if (!disabled) {
                 this.emitChange(!value);
             }
         },
         onClickLabel() {
-            const {labelDisabled, disabled, value} = this.data;
+            const { labelDisabled, disabled, value } = this.data;
             if (!disabled && !labelDisabled) {
                 this.emitChange(!value);
             }
         },
         setParentValue(parent, value) {
             const parentValue = parent.data.value.slice();
-            const {name} = this.data;
-            const {max} = parent.data;
+            const { name } = this.data;
+            const { max } = parent.data;
             if (value) {
                 if (max && parentValue.length >= max) {
                     return;
@@ -66,7 +66,8 @@ VantComponent({
                     parentValue.push(name);
                     emit(parent, parentValue);
                 }
-            } else {
+            }
+            else {
                 const index = parentValue.indexOf(name);
                 if (index !== -1) {
                     parentValue.splice(index, 1);

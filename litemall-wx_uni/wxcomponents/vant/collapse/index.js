@@ -35,12 +35,13 @@ VantComponent({
             });
         },
         switch(name, expanded) {
-            const {accordion, value} = this.data;
+            const { accordion, value } = this.data;
             if (!accordion) {
                 name = expanded
                     ? (value || []).concat(name)
                     : (value || []).filter((activeName) => activeName !== name);
-            } else {
+            }
+            else {
                 name = expanded ? name : '';
             }
             this.$emit('change', name);

@@ -29,7 +29,7 @@ VantComponent({
             (this.children || []).forEach((child) => this.updateChild(child));
         },
         updateChild(child) {
-            const {value, disabled} = this.data;
+            const { value, disabled } = this.data;
             child.setData({
                 value,
                 disabled: disabled || child.data.disabled

@@ -68,7 +68,7 @@ VantComponent({
             }
         },
         observeClass() {
-            const {transition, position} = this.data;
+            const { transition, position } = this.data;
             const updateData = {
                 name: transition || position
             };

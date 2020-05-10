@@ -4,14 +4,9 @@ import {Weapp} from './weapp';
 declare type RecordToAny<T> = {
     [K in keyof T]: any;
 };
-export declare type CombinedComponentInstance<Data, Props, Methods> =
-    Methods
-    & WechatMiniprogram.Component.TrivialInstance
-    & Weapp.FormField
-    & {
+export declare type CombinedComponentInstance<Data, Props, Methods> = Methods & WechatMiniprogram.Component.TrivialInstance & Weapp.FormField & {
     data: Data & RecordToAny<Props>;
 };
-
 export interface VantComponentOptions<Data, Props, Methods, Instance> {
     data?: Data;
     field?: boolean;
@@ -30,5 +25,4 @@ export interface VantComponentOptions<Data, Props, Methods, Instance> {
     mounted?: (this: Instance) => void;
     destroyed?: (this: Instance) => void;
 }
-
 export {};

@@ -69,7 +69,7 @@ VantComponent({
         onClick(event) {
             if (this.data.disabled)
                 return;
-            const {min} = this.data;
+            const { min } = this.data;
             this.getRect('.van-slider').then((rect) => {
                 const value = ((event.detail.x - rect.left) / rect.width) * this.getRange() + min;
                 this.updateValue(value, true);
@@ -77,7 +77,7 @@ VantComponent({
         },
         updateValue(value, end, drag) {
             value = this.format(value);
-            const {barHeight, min} = this.data;
+            const { barHeight, min } = this.data;
             const width = `${((value - min) * 100) / this.getRange()}%`;
             this.setData({
                 value,
@@ -88,18 +88,18 @@ VantComponent({
         `,
             });
             if (drag) {
-                this.$emit('drag', {value});
+                this.$emit('drag', { value });
             }
             if (end) {
                 this.$emit('change', value);
             }
         },
         getRange() {
-            const {max, min} = this.data;
+            const { max, min } = this.data;
             return max - min;
         },
         format(value) {
-            const {max, min, step} = this.data;
+            const { max, min, step } = this.data;
             return Math.round(Math.max(min, Math.min(value, max)) / step) * step;
         }
     }

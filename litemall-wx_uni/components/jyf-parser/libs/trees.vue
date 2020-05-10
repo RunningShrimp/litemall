@@ -11,14 +11,12 @@
 		<block v-bind:key="index" v-for="(item, index) in nodes">
 			<!--图片-->
 			<!--#ifdef MP-WEIXIN || MP-QQ || MP-ALIPAY || APP-PLUS-->
-			<rich-text :data-attrs="item.attrs" :id="item.attrs.id" :nodes="handler.getNode(item,!lazyLoad||imgLoad)"
-					   :style="''+handler.getStyle(item.attrs.style)"
-					   @longpress="imglongtap" @tap="imgtap" class="_img" v-if="item.name=='img'"/>
+			<rich-text :data-attrs="item.attrs" :id="item.attrs.id" :nodes="handler.getNode(item,!lazyLoad||imgLoad)" :style="''+handler.getStyle(item.attrs.style)"
+			 @longpress="imglongtap" @tap="imgtap" class="_img" v-if="item.name=='img'" />
 			<!--#endif-->
 			<!--#ifdef MP-BAIDU || MP-TOUTIAO-->
-			<rich-text :data-attrs="item.attrs" :id="item.attrs.id" :nodes='[item]' :style="item.attrs.contain"
-					   @longpress="imglongtap"
-					   @tap="imgtap" class="_img" v-if="item.name=='img'"/>
+			<rich-text :data-attrs="item.attrs" :id="item.attrs.id" :nodes='[item]' :style="item.attrs.contain" @longpress="imglongtap"
+			 @tap="imgtap" class="_img" v-if="item.name=='img'" />
 			<!--#endif-->
 			<!--文本-->
 			<!--#ifdef MP-WEIXIN || MP-QQ || APP-PLUS-->
@@ -30,33 +28,25 @@
 			<view v-else-if="item.name=='video'">
 				<!--#ifdef APP-PLUS-->
 				<view :class="'_video '+(item.attrs.class||'')" :id="item.attrs.id"
-					  :style="item.attrs.style" @tap="_loadVideo"
-					  v-if="(!loadVideo||item.lazyLoad)&&(!controls[item.attrs.id]||!controls[item.attrs.id].play)"/>
+				 :style="item.attrs.style" @tap="_loadVideo" v-if="(!loadVideo||item.lazyLoad)&&(!controls[item.attrs.id]||!controls[item.attrs.id].play)" />
 				<!--#endif-->
 				<!--#ifndef APP-PLUS-->
 				<view :class="'_video '+(item.attrs.class||'')" :id="item.attrs.id" :style="item.attrs.style"
-					  @tap="_loadVideo" v-if="item.lazyLoad&&!controls[item.attrs.id].play"/>
+				 @tap="_loadVideo" v-if="item.lazyLoad&&!controls[item.attrs.id].play" />
 				<!--#endif-->
-				<video :autoplay="item.attrs.autoplay||(controls[item.attrs.id]&&controls[item.attrs.id].play)"
-					   :class="item.attrs.class" :controls="item.attrs.controls" :data-source="item.attrs.source"
-					   :id="item.attrs.id"
-					   :loop="item.attrs.loop" :muted="item.attrs.muted" :poster="item.attrs.poster"
-					   :src="controls[item.attrs.id] ? item.attrs.source[controls[item.attrs.id].index] : item.attrs.src"
-					   :style="item.attrs.style"
-					   :unit-id="item.attrs['unit-id']" @error="error" @play="play" data-from="video" v-else/>
+				<video :autoplay="item.attrs.autoplay||(controls[item.attrs.id]&&controls[item.attrs.id].play)" :class="item.attrs.class" :controls="item.attrs.controls" :data-source="item.attrs.source" :id="item.attrs.id"
+				 :loop="item.attrs.loop" :muted="item.attrs.muted" :poster="item.attrs.poster" :src="controls[item.attrs.id] ? item.attrs.source[controls[item.attrs.id].index] : item.attrs.src" :style="item.attrs.style"
+				 :unit-id="item.attrs['unit-id']" @error="error" @play="play" data-from="video" v-else />
 			</view>
 			<!--音频-->
-			<audio :author="item.attrs.author" :class="item.attrs.class" :controls="item.attrs.controls"
-				   :data-source="item.attrs.source"
-				   :id="item.attrs.id" :loop="item.attrs.loop" :name="item.attrs.name" :poster="item.attrs.poster"
-				   :src="controls[item.attrs.id] ? item.attrs.source[controls[item.attrs.id].index] : item.attrs.src"
-				   :style="item.attrs.style" @error="error"
-				   data-audio="audio" v-else-if="item.name=='audio'"/>
+			<audio :author="item.attrs.author" :class="item.attrs.class" :controls="item.attrs.controls" :data-source="item.attrs.source"
+			 :id="item.attrs.id" :loop="item.attrs.loop" :name="item.attrs.name" :poster="item.attrs.poster" :src="controls[item.attrs.id] ? item.attrs.source[controls[item.attrs.id].index] : item.attrs.src"
+			 :style="item.attrs.style" @error="error"
+			 data-audio="audio" v-else-if="item.name=='audio'" />
 			<!--链接-->
-			<view :class="'_a '+(item.attrs.class||'')" :data-attrs="item.attrs" :style="item.attrs.style"
-				  @tap="linkpress"
-				  hover-class="_hover" v-else-if="item.name=='a'">
-				<trees :nodes="item.children"/>
+			<view :class="'_a '+(item.attrs.class||'')" :data-attrs="item.attrs" :style="item.attrs.style" @tap="linkpress"
+			 hover-class="_hover" v-else-if="item.name=='a'">
+				<trees :nodes="item.children" />
 			</view>
 			<!--广告（按需打开注释）-->
 			<!--#ifdef MP-WEIXIN || MP-QQ || MP-TOUTIAO-->
@@ -76,45 +66,40 @@
 				<view class="_ol-bef" v-if="item.type=='ol'">{{item.num}}</view>
 				<view class="_ul-bef" v-else>
 					<view class="_ul-p1" v-if="item.floor%3==0">█</view>
-					<view class="_ul-p2" v-else-if="item.floor%3==2"/>
+					<view class="_ul-p2" v-else-if="item.floor%3==2" />
 					<view class="_ul-p1" style="border-radius:50%" v-else>█</view>
 				</view>
 				<!--#ifdef MP-ALIPAY-->
 				<view class="_li">
-					<trees :nodes="item.children"/>
+					<trees :nodes="item.children" />
 				</view>
 				<!--#endif-->
 				<!--#ifndef MP-ALIPAY-->
-				<trees :lazyLoad="lazyLoad" :loadVideo="loadVideo" :nodes="item.children" class="_node _li"/>
+				<trees :lazyLoad="lazyLoad" :loadVideo="loadVideo" :nodes="item.children" class="_node _li" />
 				<!--#endif-->
 			</view>
 			<!--#ifdef APP-PLUS-->
-			<iframe :allowfullscreen="item.attrs.allowfullscreen" :frameborder="item.attrs.frameborder"
-					:height="item.attrs.height"
-					:src="item.attrs.src" :style="item.attrs.style" :width="item.attrs.width"
-					v-else-if="item.name=='iframe'"/>
+			<iframe :allowfullscreen="item.attrs.allowfullscreen" :frameborder="item.attrs.frameborder" :height="item.attrs.height"
+			 :src="item.attrs.src" :style="item.attrs.style" :width="item.attrs.width" v-else-if="item.name=='iframe'" />
 			<embed :height="item.attrs.height" :src="item.attrs.src" :style="item.attrs.style" :width="item.attrs.width"
-				   v-else-if="item.name=='embed'"/>
+			 v-else-if="item.name=='embed'" />
 			<!--#endif-->
 			<!--富文本-->
 			<!--#ifdef MP-WEIXIN || MP-QQ || MP-ALIPAY || APP-PLUS-->
-			<rich-text :class="'_p __'+item.name" :id="item.attrs.id" :nodes="[item]"
-					   v-else-if="handler.useRichText(item)"/>
+			<rich-text :class="'_p __'+item.name" :id="item.attrs.id" :nodes="[item]" v-else-if="handler.useRichText(item)" />
 			<!--#endif-->
 			<!--#ifdef MP-BAIDU || MP-TOUTIAO-->
 			<rich-text :class="_p" :id="item.attrs.id" :nodes="[item]" :style="item.attrs.contain"
-					   v-else-if="!(item.c||item.continue)"/>
+			 v-else-if="!(item.c||item.continue)" />
 			<!--#endif-->
 			<!--#ifdef MP-ALIPAY-->
-			<view :class="'_'+item.name+' '+(item.attrs.class||'')" :id="item.attrs.id" :style="item.attrs.style"
-				  v-else>
-				<trees :nodes="item.children"/>
+			<view :class="'_'+item.name+' '+(item.attrs.class||'')" :id="item.attrs.id" :style="item.attrs.style" v-else>
+				<trees :nodes="item.children" />
 			</view>
 			<!--#endif-->
 			<!--#ifndef MP-ALIPAY-->
-			<trees :class="(item.attrs.id||'')+' _'+item.name+' '+(item.attrs.class||'')" :lazyLoad="lazyLoad"
-				   :loadVideo="loadVideo"
-				   :nodes="item.children" :style="item.attrs.style" v-else/>
+			<trees :class="(item.attrs.id||'')+' _'+item.name+' '+(item.attrs.class||'')" :lazyLoad="lazyLoad" :loadVideo="loadVideo"
+			 :nodes="item.children" :style="item.attrs.style" v-else />
 			<!--#endif-->
 		</block>
 	</view>
@@ -122,9 +107,9 @@
 <script lang="wxs" module="handler" src="./handler.wxs"></script>
 <script lang="sjs" module="handler" src="./handler.sjs"></script>
 <script>
-	import trees from './trees'
+    import trees from './trees'
 
-	export default {
+    export default {
 		components: {
 			trees
 		},
@@ -183,7 +168,7 @@
 					})
 					if (preview) {
 						var urls = this.top.imgList,
-								current = urls[attrs.i] ? parseInt(attrs.i) : (urls = [attrs.src], 0);
+							current = urls[attrs.i] ? parseInt(attrs.i) : (urls = [attrs.src], 0);
 						uni.previewImage({
 							current,
 							urls
@@ -201,7 +186,7 @@
 			},
 			linkpress(e) {
 				var jump = true,
-						attrs = e.currentTarget.dataset.attrs;
+					attrs = e.currentTarget.dataset.attrs;
 				attrs.ignore = () => jump = false;
 				this.top.$emit('linkpress', attrs);
 				if (jump) {
@@ -236,13 +221,13 @@
 									complete: uni.hideLoading
 								})
 							} else
-									// #endif
+								// #endif
 								uni.setClipboardData({
 									data: attrs.href,
 									success: () =>
-											uni.showToast({
-												title: '链接已复制'
-											})
+										uni.showToast({
+											title: '链接已复制'
+										})
 								});
 						} else
 							uni.navigateTo({

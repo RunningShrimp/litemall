@@ -1,11 +1,1 @@
-@import "../common/index.css";
-
-.van-sticky {
-    position: relative
-}
-
-.van-sticky-wrap--fixed {
-    position: fixed;
-    right: 0;
-    left: 0
-}
+@import "../common/index.css";.van-sticky{position:relative}.van-sticky-wrap--fixed{position:fixed;right:0;left:0}

@@ -33,7 +33,7 @@ VantComponent({
             type: null,
             value: '100%',
             observer(val) {
-                this.setData({isArray: val instanceof Array});
+                this.setData({ isArray: val instanceof Array });
             }
         }
     },

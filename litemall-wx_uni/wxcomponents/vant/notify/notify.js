@@ -9,23 +9,17 @@ const defaultOptions = {
     zIndex: 110,
     color: WHITE,
     safeAreaInsetTop: false,
-    onClick: () => {
-    },
-    onOpened: () => {
-    },
-    onClose: () => {
-    }
+    onClick: () => { },
+    onOpened: () => { },
+    onClose: () => { }
 };
-
 function parseOptions(message) {
-    return typeof message === 'string' ? {message} : message;
+    return typeof message === 'string' ? { message } : message;
 }
-
 function getContext() {
     const pages = getCurrentPages();
     return pages[pages.length - 1];
 }
-
 export default function Notify(options) {
     options = Object.assign(Object.assign({}, defaultOptions), parseOptions(options));
     const context = options.context || getContext();

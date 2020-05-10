@@ -22,13 +22,13 @@ VantComponent({
             this.$emit('click');
         },
         updateFromParent() {
-            const {parent} = this;
+            const { parent } = this;
             if (!parent) {
                 return;
             }
             const index = parent.children.indexOf(this);
             const parentData = parent.data;
-            const {data} = this;
+            const { data } = this;
             const active = (data.name || index) === parentData.active;
             const patch = {};
             if (active !== data.active) {

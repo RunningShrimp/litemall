@@ -7,7 +7,6 @@ function mapKeys(source, target, map) {
         }
     });
 }
-
 function VantComponent(vantOptions = {}) {
     const options = {};
     mapKeys(vantOptions, options, {
@@ -22,7 +21,7 @@ function VantComponent(vantOptions = {}) {
         destroyed: 'detached',
         classes: 'externalClasses'
     });
-    const {relation} = vantOptions;
+    const { relation } = vantOptions;
     if (relation) {
         options.relations = Object.assign(options.relations || {}, {
             [`../${relation.name}/index`]: relation
@@ -45,5 +44,4 @@ function VantComponent(vantOptions = {}) {
     };
     Component(options);
 }
-
-export {VantComponent};
+export { VantComponent };

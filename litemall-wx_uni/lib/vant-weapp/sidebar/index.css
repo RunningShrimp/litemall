@@ -1,6 +1,1 @@
-@import "../common/index.css";
-
-.van-sidebar {
-    width: 85px;
-    width: var(--sidebar-width, 85px)
-}
+@import "../common/index.css";.van-sidebar{width:85px;width:var(--sidebar-width,85px)}

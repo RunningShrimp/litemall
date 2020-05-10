@@ -32,8 +32,8 @@ VantComponent({
             this.jumpLink();
         },
         updateStyle() {
-            const {children = []} = this.parent;
-            const {length} = children;
+            const { children = [] } = this.parent;
+            const { length } = children;
             const index = children.indexOf(this);
             let rightBorderLess = false;
             if (length > 1) {

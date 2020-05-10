@@ -44,7 +44,7 @@ VantComponent({
     },
     methods: {
         onChange(event) {
-            this.setData({value: event.detail});
+            this.setData({ value: event.detail });
             this.$emit('change', event.detail);
         },
         onCancel() {
@@ -53,7 +53,7 @@ VantComponent({
              * https://github.com/youzan/@vant/weapp/issues/1768
              */
             setTimeout(() => {
-                this.setData({value: ''});
+                this.setData({ value: '' });
                 this.$emit('cancel');
                 this.$emit('change', '');
             }, 200);

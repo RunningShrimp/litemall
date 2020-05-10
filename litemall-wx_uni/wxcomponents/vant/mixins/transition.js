@@ -43,7 +43,7 @@ export const transition = function (showDefaultValue) {
                 value ? this.enter() : this.leave();
             },
             enter() {
-                const {duration, name} = this.data;
+                const { duration, name } = this.data;
                 const classNames = getClassNames(name);
                 const currentDuration = isObj(duration) ? duration.enter : duration;
                 this.status = 'enter';
@@ -51,31 +51,30 @@ export const transition = function (showDefaultValue) {
                 Promise.resolve()
                     .then(nextTick)
                     .then(() => {
-                        this.checkStatus('enter');
-                        this.$emit('enter');
-                        this.setData({
-                            inited: true,
-                            display: true,
-                            classes: classNames.enter,
-                            currentDuration
-                        });
-                    })
+                    this.checkStatus('enter');
+                    this.$emit('enter');
+                    this.setData({
+                        inited: true,
+                        display: true,
+                        classes: classNames.enter,
+                        currentDuration
+                    });
+                })
                     .then(nextTick)
                     .then(() => {
-                        this.checkStatus('enter');
-                        this.transitionEnded = false;
-                        this.setData({
-                            classes: classNames['enter-to']
-                        });
-                    })
-                    .catch(() => {
+                    this.checkStatus('enter');
+                    this.transitionEnded = false;
+                    this.setData({
+                        classes: classNames['enter-to']
                     });
+                })
+                    .catch(() => { });
             },
             leave() {
                 if (!this.data.display) {
                     return;
                 }
-                const {duration, name} = this.data;
+                const { duration, name } = this.data;
                 const classNames = getClassNames(name);
                 const currentDuration = isObj(duration) ? duration.leave : duration;
                 this.status = 'leave';
@@ -83,24 +82,23 @@ export const transition = function (showDefaultValue) {
                 Promise.resolve()
                     .then(nextTick)
                     .then(() => {
-                        this.checkStatus('leave');
-                        this.$emit('leave');
-                        this.setData({
-                            classes: classNames.leave,
-                            currentDuration
-                        });
-                    })
+                    this.checkStatus('leave');
+                    this.$emit('leave');
+                    this.setData({
+                        classes: classNames.leave,
+                        currentDuration
+                    });
+                })
                     .then(nextTick)
                     .then(() => {
-                        this.checkStatus('leave');
-                        this.transitionEnded = false;
-                        setTimeout(() => this.onTransitionEnd(), currentDuration);
-                        this.setData({
-                            classes: classNames['leave-to']
-                        });
-                    })
-                    .catch(() => {
+                    this.checkStatus('leave');
+                    this.transitionEnded = false;
+                    setTimeout(() => this.onTransitionEnd(), currentDuration);
+                    this.setData({
+                        classes: classNames['leave-to']
                     });
+                })
+                    .catch(() => { });
             },
             checkStatus(status) {
                 if (status !== this.status) {
@@ -113,9 +111,9 @@ export const transition = function (showDefaultValue) {
                 }
                 this.transitionEnded = true;
                 this.$emit(`after-${this.status}`);
-                const {show, display} = this.data;
+                const { show, display } = this.data;
                 if (!show && display) {
-                    this.setData({display: false});
+                    this.setData({ display: false });
                 }
             }
         }

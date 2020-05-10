@@ -2,9 +2,9 @@
  * author: Di (微信小程序开发工程师)
  * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
  *               垂直微信小程序开发交流社区
- *
+ * 
  * github地址: https://github.com/icindy/wxParse
- *
+ * 
  * for: 微信小程序富文本解析
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
@@ -32,220 +32,222 @@ var fillAttrs = makeMap("checked,compact,declare,defer,disabled,ismap,multiple,n
 var special = makeMap("wxxxcode-style,script,style,view,scroll-view,block");
 
 function makeMap(str) {
-    var obj = {},
-        items = str.split(",");
+  var obj = {},
+      items = str.split(",");
 
-    for (var i = 0; i < items.length; i++) obj[items[i]] = true;
+  for (var i = 0; i < items.length; i++) obj[items[i]] = true;
 
-    return obj;
+  return obj;
 }
 
 function q(v) {
-    return '"' + v + '"';
+  return '"' + v + '"';
 }
 
 function removeDOCTYPE(html) {
-    return html.replace(/<\?xml.*\?>\n/, '').replace(/<!doctype.*\>\n/, '').replace(/<!DOCTYPE.*\>\n/, '');
+  return html.replace(/<\?xml.*\?>\n/, '').replace(/<!doctype.*\>\n/, '').replace(/<!DOCTYPE.*\>\n/, '');
 }
 
 function html2json(html, bindName) {
-    //处理字符串
-    html = removeDOCTYPE(html);
-    html = wxDiscode.strDiscode(html); //生成node节点
+  //处理字符串
+  html = removeDOCTYPE(html);
+  html = wxDiscode.strDiscode(html); //生成node节点
 
-    var bufArray = [];
-    var results = {
-        node: bindName,
-        nodes: [],
-        images: [],
-        imageUrls: []
-    };
-    HTMLParser(html, {
-        start: function (tag, attrs, unary) {
-            //debug(tag, attrs, unary);
-            // node for this element
-            var node = {
-                node: 'element',
-                tag: tag
-            };
+  var bufArray = [];
+  var results = {
+    node: bindName,
+    nodes: [],
+    images: [],
+    imageUrls: []
+  };
+  HTMLParser(html, {
+    start: function (tag, attrs, unary) {
+      //debug(tag, attrs, unary);
+      // node for this element
+      var node = {
+        node: 'element',
+        tag: tag
+      };
 
-            if (block[tag]) {
-                node.tagType = "block";
-            } else if (inline[tag]) {
-                node.tagType = "inline";
-            } else if (closeSelf[tag]) {
-                node.tagType = "closeSelf";
-            }
+      if (block[tag]) {
+        node.tagType = "block";
+      } else if (inline[tag]) {
+        node.tagType = "inline";
+      } else if (closeSelf[tag]) {
+        node.tagType = "closeSelf";
+      }
 
-            if (attrs.length !== 0) {
-                node.attr = attrs.reduce(function (pre, attr) {
-                    var name = attr.name;
-                    var value = attr.value;
+      if (attrs.length !== 0) {
+        node.attr = attrs.reduce(function (pre, attr) {
+          var name = attr.name;
+          var value = attr.value;
 
-                    if (name == 'class') {
-                        // console.dir(value);
-                        //  value = value.join("")
-                        node.classStr = value;
-                    } // has multi attibutes
-                    // make it array of attribute
-
-
-                    if (name == 'style') {
-                        // console.dir(value);
-                        //  value = value.join("")
-                        node.styleStr = value;
-                    }
-
-                    if (value.match(/ /)) {
-                        value = value.split(' ');
-                    } // if attr already exists
-                    // merge it
+          if (name == 'class') {
+            // console.dir(value);
+            //  value = value.join("")
+            node.classStr = value;
+          } // has multi attibutes
+          // make it array of attribute
 
 
-                    if (pre[name]) {
-                        if (Array.isArray(pre[name])) {
-                            // already array, push to last
-                            pre[name].push(value);
-                        } else {
-                            // single value, make it array
-                            pre[name] = [pre[name], value];
-                        }
-                    } else {
-                        // not exist, put it
-                        pre[name] = value;
-                    }
+          if (name == 'style') {
+            // console.dir(value);
+            //  value = value.join("")
+            node.styleStr = value;
+          }
 
-                    return pre;
-                }, {});
-            } //对img添加额外数据
+          if (value.match(/ /)) {
+            value = value.split(' ');
+          } // if attr already exists
+          // merge it
 
 
-            if (node.tag === 'img') {
-                node.imgIndex = results.images.length;
-                var imgUrl = node.attr.src;
-                imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
-                node.attr.src = imgUrl;
-                node.from = bindName;
-                results.images.push(node);
-                results.imageUrls.push(imgUrl);
-            }
-
-            if (unary) {
-                // if this tag dosen't have end tag
-                // like <img src="hoge.png"/>
-                // add to parents
-                var parent = bufArray[0] || results;
-
-                if (parent.nodes === undefined) {
-                    parent.nodes = [];
-                }
-
-                parent.nodes.push(node);
+          if (pre[name]) {
+            if (Array.isArray(pre[name])) {
+              // already array, push to last
+              pre[name].push(value);
             } else {
-                bufArray.unshift(node);
+              // single value, make it array
+              pre[name] = [pre[name], value];
             }
-        },
-        end: function (tag) {
-            //debug(tag);
-            // merge into parent tag
-            var node = bufArray.shift();
-            if (node.tag !== tag) console.error('invalid state: mismatch end tag');
+          } else {
+            // not exist, put it
+            pre[name] = value;
+          }
 
-            if (bufArray.length === 0) {
-                results.nodes.push(node);
-            } else {
-                var parent = bufArray[0];
+          return pre;
+        }, {});
+      } //对img添加额外数据
 
-                if (parent.nodes === undefined) {
-                    parent.nodes = [];
-                }
 
-                parent.nodes.push(node);
-            }
-        },
-        chars: function (text) {
-            //debug(text);
-            var node = {
-                node: 'text',
-                text: text,
-                textArray: transEmojiStr(text)
-            };
+      if (node.tag === 'img') {
+        node.imgIndex = results.images.length;
+        var imgUrl = node.attr.src;
+        imgUrl = wxDiscode.urlToHttpUrl(imgUrl, __placeImgeUrlHttps);
+        node.attr.src = imgUrl;
+        node.from = bindName;
+        results.images.push(node);
+        results.imageUrls.push(imgUrl);
+      }
 
-            if (bufArray.length === 0) {
-                results.nodes.push(node);
-            } else {
-                var parent = bufArray[0];
+      if (unary) {
+        // if this tag dosen't have end tag
+        // like <img src="hoge.png"/>
+        // add to parents
+        var parent = bufArray[0] || results;
 
-                if (parent.nodes === undefined) {
-                    parent.nodes = [];
-                }
-
-                parent.nodes.push(node);
-            }
-        },
-        comment: function (text) {
-            //debug(text);
-            var node = {
-                node: 'comment',
-                text: text
-            };
-            var parent = bufArray[0];
-
-            if (parent.nodes === undefined) {
-                parent.nodes = [];
-            }
-
-            parent.nodes.push(node);
+        if (parent.nodes === undefined) {
+          parent.nodes = [];
         }
-    });
-    return results;
+
+        parent.nodes.push(node);
+      } else {
+        bufArray.unshift(node);
+      }
+    },
+    end: function (tag) {
+      //debug(tag);
+      // merge into parent tag
+      var node = bufArray.shift();
+      if (node.tag !== tag) console.error('invalid state: mismatch end tag');
+
+      if (bufArray.length === 0) {
+        results.nodes.push(node);
+      } else {
+        var parent = bufArray[0];
+
+        if (parent.nodes === undefined) {
+          parent.nodes = [];
+        }
+
+        parent.nodes.push(node);
+      }
+    },
+    chars: function (text) {
+      //debug(text);
+      var node = {
+        node: 'text',
+        text: text,
+        textArray: transEmojiStr(text)
+      };
+
+      if (bufArray.length === 0) {
+        results.nodes.push(node);
+      } else {
+        var parent = bufArray[0];
+
+        if (parent.nodes === undefined) {
+          parent.nodes = [];
+        }
+
+        parent.nodes.push(node);
+      }
+    },
+    comment: function (text) {
+      //debug(text);
+      var node = {
+        node: 'comment',
+        text: text
+      };
+      var parent = bufArray[0];
+
+      if (parent.nodes === undefined) {
+        parent.nodes = [];
+      }
+
+      parent.nodes.push(node);
+    }
+  });
+  return results;
 }
 
+
+
 function transEmojiStr(str) {
-    // var eReg = new RegExp("["+__reg+' '+"]");
-    //   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-    var emojiObjs = []; //如果正则表达式为空
+  // var eReg = new RegExp("["+__reg+' '+"]");
+  //   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
+  var emojiObjs = []; //如果正则表达式为空
 
-    if (__emojisReg.length == 0 || !__emojis) {
-        var emojiObj = {};
-        emojiObj.node = "text";
-        emojiObj.text = str;
-        array = [emojiObj];
-        return array;
-    } //这个地方需要调整
+  if (__emojisReg.length == 0 || !__emojis) {
+    var emojiObj = {};
+    emojiObj.node = "text";
+    emojiObj.text = str;
+    array = [emojiObj];
+    return array;
+  } //这个地方需要调整
 
 
-    str = str.replace(/\[([^\[\]]+)\]/g, ':$1:');
-    var eReg = new RegExp("[:]");
-    var array = str.split(eReg);
+  str = str.replace(/\[([^\[\]]+)\]/g, ':$1:');
+  var eReg = new RegExp("[:]");
+  var array = str.split(eReg);
 
-    for (var i = 0; i < array.length; i++) {
-        var ele = array[i];
-        var emojiObj = {};
+  for (var i = 0; i < array.length; i++) {
+    var ele = array[i];
+    var emojiObj = {};
 
-        if (__emojis[ele]) {
-            emojiObj.node = "element";
-            emojiObj.tag = "emoji";
-            emojiObj.text = __emojis[ele];
-            emojiObj.baseSrc = __emojisBaseSrc;
-        } else {
-            emojiObj.node = "text";
-            emojiObj.text = ele;
-        }
-
-        emojiObjs.push(emojiObj);
+    if (__emojis[ele]) {
+      emojiObj.node = "element";
+      emojiObj.tag = "emoji";
+      emojiObj.text = __emojis[ele];
+      emojiObj.baseSrc = __emojisBaseSrc;
+    } else {
+      emojiObj.node = "text";
+      emojiObj.text = ele;
     }
 
-    return emojiObjs;
+    emojiObjs.push(emojiObj);
+  }
+
+  return emojiObjs;
 }
 
 function emojisInit(reg = '', baseSrc = "/wxParse/emojis/", emojis) {
-    __emojisReg = reg;
-    __emojisBaseSrc = baseSrc;
-    __emojis = emojis;
+  __emojisReg = reg;
+  __emojisBaseSrc = baseSrc;
+  __emojis = emojis;
 }
 
 module.exports = {
-    html2json: html2json,
-    emojisInit: emojisInit
+  html2json: html2json,
+  emojisInit: emojisInit
 };

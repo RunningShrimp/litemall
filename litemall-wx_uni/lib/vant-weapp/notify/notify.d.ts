@@ -12,9 +12,7 @@ interface NotifyOptions {
     onOpened?: () => void;
     onClose?: () => void;
 }
-
 declare function Notify(options: NotifyOptions | string): any;
-
 declare namespace Notify {
     var clear: (options?: NotifyOptions) => void;
 }

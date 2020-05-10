@@ -26,7 +26,7 @@ VantComponent({
     },
     methods: {
         setActive(activeKey) {
-            const {children, currentActive} = this;
+            const { children, currentActive } = this;
             if (!children.length) {
                 return Promise.resolve();
             }
